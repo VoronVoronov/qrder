@@ -43,8 +43,15 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y gcc g++ make \
     && apt-get install -y nodejs \
     && npm install -g npm@8.19.2 \
-    && npm install \
-    && npm run dev \
+    && npm install
+
+#выдаем права на папку node_modules storage bootstrap/cache
+RUN chown -R www-data:www-data /var/www/html/node_modules \
+    && chown -R www-data:www-data /var/www/html/storage \
+    && chown -R www-data:www-data /var/www/html/bootstrap/cache
+
+# Компиляция статических файлов
+RUN npm run dev
 
 # Открытие порта nginx
 EXPOSE 80
