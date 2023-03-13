@@ -30,6 +30,9 @@ RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local
 # Копирование настроек nginx
 COPY ./docker/nginx/default.conf /etc/nginx/conf.d/default.conf
 
+# Cоздание директории для Laravel
+RUN mkdir -p /var/www/html
+
 # Копирование кода Laravel в контейнер
 COPY . /var/www/html
 
