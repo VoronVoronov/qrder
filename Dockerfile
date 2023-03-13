@@ -17,10 +17,7 @@ RUN apt-get update && \
         libfreetype6-dev \
         libonig-dev \
         mysql-server \
-        mysql-client \
-        libmysqlclient-dev \
-        libmysqlclient21 \
-        libmysqlclient-dev-compat \
+        mysql-client
 
 # Установка расширений PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
