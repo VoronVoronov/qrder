@@ -48,6 +48,15 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    certbot:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        volumes:
+            - ./certbot/conf:/etc/letsencrypt
+            - ./certbot/www:/var/www/certbot
+        command: certbot certonly --webroot --webroot-path=/var/www/certbot --email dastan@zholdas.icu --agree-tos -d qrd.kz
+
 networks:
     sail:
         driver: bridge
