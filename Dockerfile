@@ -61,7 +61,7 @@ RUN chown -R www-data:www-data /var/www/html/node_modules \
 
 # Компиляция статических файлов
 RUN npm run build
-RUN php artisan migrate
+RUN php artisan migrate --force
 
 # Установка ключа приложения
 RUN copy .env.example .env
