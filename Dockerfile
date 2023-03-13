@@ -64,6 +64,7 @@ RUN npm run build
 RUN php artisan migrate
 
 # Установка ключа приложения
+RUN copy .env.example .env
 RUN php artisan key:generate
 
 # Открытие порта nginx
