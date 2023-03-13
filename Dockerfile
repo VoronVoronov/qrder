@@ -45,10 +45,15 @@ RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && npm install -g npm@8.19.2 \
     && npm install
 
-#выдаем права на папку node_modules storage bootstrap/cache
+#выдаем права на папку node_modules storage bootstrap/cache public
 RUN chown -R www-data:www-data /var/www/html/node_modules \
     && chown -R www-data:www-data /var/www/html/storage \
-    && chown -R www-data:www-data /var/www/html/bootstrap/cache
+    && chown -R www-data:www-data /var/www/html/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html/public \
+    && chmod -R 775 /var/www/html/node_modules \
+    && chmod -R 775 /var/www/html/storage \
+    && chmod -R 775 /var/www/html/bootstrap/cache \
+    && chmod -R 775 /var/www/html/public
 
 # Компиляция статических файлов
 RUN npm run dev
