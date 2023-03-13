@@ -20,8 +20,7 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 COPY . /var/www/html
 
 # Install application dependencies
-RUN composer install --optimize-autoloader --no-dev && \
-    npm install && \
+RUN npm install && \
     npm run build
 
 # Set the working directory
