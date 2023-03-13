@@ -1,0 +1,42 @@
+version: '3'
+services:
+  app:
+    build: .
+    container_name: laravel_app
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_DATABASE=laravel
+      - DB_USERNAME=root
+      - DB_PASSWORD=secret
+    depends_on:
+      - mysql
+      - redis
+    links:
+      - mysql
+      - redis
+
+  mysql:
+    image: mysql:latest
+    container_name: laravel_mysql
+    restart: always
+    environment:
+      - MYSQL_DATABASE=laravel
+      - MYSQL_ROOT_PASSWORD=secret
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  redis:
+    image: redis:latest
+    container_name: laravel_redis
+    restart: always
+
+volumes:
+  mysql_data:
