@@ -61,7 +61,6 @@ RUN chown -R www-data:www-data /var/www/html/node_modules \
 
 # Компиляция статических файлов
 RUN npm run build
-RUN php artisan key:generate
 RUN php artisan migrate
 
 # Установка ключа приложения
