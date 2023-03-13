@@ -57,7 +57,6 @@ RUN chown -R www-data:www-data /var/www/html/node_modules \
     && chmod -R 775 /var/www/html
 
 # Компиляция статических файлов
-RUN composer install
 RUN npm run prod
 RUN php artisan key:generate
 RUN php artisan migrate
