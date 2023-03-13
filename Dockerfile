@@ -53,13 +53,23 @@ RUN chown -R www-data:www-data /var/www/html/node_modules \
     && chmod -R 775 /var/www/html/node_modules \
     && chmod -R 775 /var/www/html/storage \
     && chmod -R 775 /var/www/html/bootstrap/cache \
-    && chmod -R 775 /var/www/html/public
+    && chmod -R 775 /var/www/html/public \
+    && chmod -R 775 /var/www/html
 
 # Компиляция статических файлов
-RUN npm run dev
+RUN composer install
+RUN npm run prod
+RUN php artisan key:generate
+RUN php artisan migrate
+
+# Установка ключа приложения
+RUN php artisan key:generate
 
 # Открытие порта nginx
 EXPOSE 80
 
 # Запуск nginx и php-fpm
 CMD service nginx start && php-fpm
+
+RUN certbot certonly --webroot --webroot-path=/var/www/html/public -d qrder.kz -d www.qrder.kz
+RUN service nginx restart
