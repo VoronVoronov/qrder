@@ -38,7 +38,7 @@ WORKDIR /var/www/html
 RUN composer install --no-scripts --no-interaction
 
 # Установка зависимостей npm
-curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get update \
     && apt-get install -y nodejs=16.15.0-deb-1nodesource1 \
     && npm install -g npm@8.19.2 \
