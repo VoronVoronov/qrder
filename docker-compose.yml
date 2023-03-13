@@ -1,14 +1,14 @@
 version: '3'
 services:
-    qrder.kz:
+    laravel.test:
         build:
-            context: .
+            context: ./vendor/laravel/sail/runtimes/8.2
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
         image: sail-8.2/app
         extra_hosts:
-            - 'qrder.kz:host-gateway'
+            - 'host.docker.internal:host-gateway'
         ports:
             - '${APP_PORT:-80}:80'
             - '${VITE_PORT:-5173}:${VITE_PORT:-5173}'
@@ -30,14 +30,13 @@ services:
         environment:
             MYSQL_ROOT_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ROOT_HOST: '%'
-            DB_DATABASE: '${DB_DATABASE}'
-            DB_USERNAME: '${DB_USERNAME}'
-            DB_PASSWORD: '${DB_PASSWORD}'
+            MYSQL_DATABASE: '${DB_DATABASE}'
+            MYSQL_USER: '${DB_USERNAME}'
+            MYSQL_PASSWORD: '${DB_PASSWORD}'
             MYSQL_ALLOW_EMPTY_PASSWORD: 1
         volumes:
             - 'sail-mysql:/var/lib/mysql'
             - './vendor/laravel/sail/database/mysql/create-testing-database.sh:/docker-entrypoint-initdb.d/10-create-testing-database.sh'
-            - './vendor/laravel/sail/database/mysql/migrate.sh:/docker-entrypoint-initdb.d/20-migrate.sh'
         networks:
             - sail
         healthcheck:
@@ -48,13 +47,6 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
-    certbot:
-        image: certbot/certbot
-        volumes:
-            - ./storage/certbot:/etc/letsencrypt
-        entrypoint: ""
-        command: certbot certonly --webroot --webroot-path=/var/www/certbot --email dastan@zholdas.icu --agree-tos -d qrder.kz
-
 networks:
     sail:
         driver: bridge
