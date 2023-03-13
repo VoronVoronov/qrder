@@ -15,7 +15,12 @@ RUN apt-get update && \
         libjpeg-dev \
         libpng-dev \
         libfreetype6-dev \
-        libonig-dev
+        libonig-dev \
+        mysql-server \
+        mysql-client \
+        libmysqlclient-dev \
+        libmysqlclient21 \
+        libmysqlclient-dev-compat \
 
 # Установка расширений PHP
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg \
