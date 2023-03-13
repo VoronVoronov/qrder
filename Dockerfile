@@ -38,8 +38,8 @@ WORKDIR /var/www/html
 RUN composer install --no-scripts --no-interaction
 
 # Установка зависимостей npm
-RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
-RUN sudo apt-get install -y nodejs
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | bash -
+RUN apt-get install -y nodejs
 
 RUN apt-get update && apt-get install -g npm@8.19.2 && npm install && npm run dev
 
