@@ -12,4 +12,5 @@ RUN apt-get update \
     && cd /home/qrder \
     && wget https://getcomposer.org/composer.phar \
     && php composer.phar install \
+    && cp .env.example .env \
 
