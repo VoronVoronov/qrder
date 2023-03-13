@@ -43,8 +43,7 @@ curl -fsSL https://deb.nodesource.com/setup_16.x | bash - \
     && apt-get install -y nodejs=16.15.0-deb-1nodesource1 \
     && npm install -g npm@8.19.2 \
     && npm install \
-    && npm run dev
-
+    && npm run dev \
 
 # Открытие порта nginx
 EXPOSE 80
