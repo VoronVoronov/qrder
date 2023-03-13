@@ -55,7 +55,7 @@ services:
         volumes:
             - ./certbot/conf:/etc/letsencrypt
             - ./certbot/www:/var/www/certbot
-        command: certbot certonly --webroot --webroot-path=/var/www/certbot --email dastan@zholdas.icu --agree-tos -d qrd.kz
+        command: certbot certonly --webroot --webroot-path=/var/www/certbot --email dastan@zholdas.icu --agree-tos -d qrder.kz
 
 networks:
     sail:
