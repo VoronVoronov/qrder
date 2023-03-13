@@ -38,7 +38,10 @@ WORKDIR /var/www/html
 RUN composer install --no-scripts --no-interaction
 
 # Установка зависимостей npm
-RUN apt-get update && apt-get install -y npm && npm install && npm run dev
+RUN curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+RUN sudo apt-get install -y nodejs
+
+RUN apt-get update && apt-get install -g npm@8.19.2 && npm install && npm run dev
 
 # Открытие порта nginx
 EXPOSE 80
