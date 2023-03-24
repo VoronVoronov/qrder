@@ -21,7 +21,7 @@
                         <el-form-item :error="this.alert.data.password">
                             <el-input type="password" v-model="form.password_confirmation" show-password :placeholder="$t('users.password_confirmation')"></el-input>
                         </el-form-item>
-                        <el-form-item>
+                        <el-form-item :error="this.alert.data.agreement">
                             <el-checkbox v-model="form.agreement" :label="$t('users.agree_checkbox')" @click="showPolicy()"></el-checkbox>
                         </el-form-item>
                         <el-form-item>
@@ -119,6 +119,9 @@ export default {
                     }
                     if(error.response.data.errors.hasOwnProperty('password')) {
                         this.alert.data.password = error.response.data.errors.password[0]
+                    }
+                    if(error.response.data.errors.hasOwnProperty('agreement')) {
+                        this.alert.data.agreement = error.response.data.errors.agreement[0]
                     }
                     setTimeout(() => {
                         this.alert.show = false
