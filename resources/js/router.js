@@ -33,22 +33,27 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-    const token = localStorage.getItem('access_token')
-    // if(token != null){
-    //     axios.get('/api/v1/user', {
-    //         headers: {
-    //             'Authorization': 'Bearer ' + token,
-    //         }
-    //     })
-    //         .catch(error => {
-    //             localStorage.removeItem('access_token')
-    //             this.$router.push({name: 'login'})
-    //         })
-    // }
+    const token = localStorage.getItem('token')
+    if(token != null){
+        axios.get('/api/v1/users/profile', {
+            headers: {
+                'Authorization': 'Bearer ' + token,
+            }
+        })
+            .catch(error => {
+                localStorage.removeItem('token')
+                this.$router.push({name: 'login'})
+            })
+    }
     const requiresAuth = to.matched.some(record => record.meta.requiresAuth)
     if (requiresAuth && !token) {
         next('/login')
     } else {
+        if (to.name === 'login' || to.name === 'register') {
+            if (token != null) {
+                next('/')
+            }
+        }
         next()
     }
 })

@@ -102,7 +102,13 @@ export default {
             this.alert.data = []
             axios.post('/api/v1/users/register', this.form)
                 .then(response => {
-                    console.log(response)
+                    this.alert.title = response.data.message
+                    this.alert.type = response.data.status
+                    this.alert.show = true
+                    setTimeout(() => {
+                        this.alert.show = false
+                        this.$router.push({ name: 'login' })
+                    }, 2000)
                 })
                 .catch(error => {
                     this.alert.title = error.response.data.message

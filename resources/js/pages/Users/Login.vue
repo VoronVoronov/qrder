@@ -55,7 +55,14 @@ import Alert from '../../components/alert.vue'
                 this.alert.data = []
                 axios.post('/api/v1/users/login', this.form)
                     .then(response => {
-                        console.log(response)
+                        localStorage.setItem('token', response.data.data.token)
+                        this.alert.title = response.data.message
+                        this.alert.type = response.data.status
+                        this.alert.show = true
+                        setTimeout(() => {
+                            this.alert.show = false
+                            this.$router.push({ name: 'dashboard' })
+                        }, 2000)
                     })
                     .catch(error => {
                         this.alert.title = error.response.data.message
