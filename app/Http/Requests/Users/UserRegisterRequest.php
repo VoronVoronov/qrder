@@ -38,12 +38,12 @@ class UserRegisterRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'Поле email обязательно для заполнения',
-            'email.email' => 'Поле email должно быть валидным email адресом',
-            'email.unique' => 'Пользователь с таким email уже существует',
-            'password.required' => 'Поле пароль обязательно для заполнения',
-            'password.min' => 'Поле пароль должно быть не менее 8 символов',
-            'password.confirmed' => 'Пароли не совпадают',
+            'email.required' => __('main.users.register.email.required'),
+            'email.email' => __('main.users.register.email.email'),
+            'email.unique' => __('main.users.register.email.unique'),
+            'password.required' => __('main.users.register.password.required'),
+            'password.min' => __('main.users.register.password.min'),
+            'password.confirmed' => __('main.users.register.password.confirmed'),
         ];
     }
 
@@ -56,7 +56,7 @@ class UserRegisterRequest extends FormRequest
     {
         return [
             'email' => 'email',
-            'password' => 'пароль',
+            'password' => 'password',
         ];
     }
 
@@ -64,7 +64,7 @@ class UserRegisterRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'errors' => $validator->errors(),
-            'message' => 'Проверьте правильность введенных данных',
+            'message' => __('main.validation'),
             'status' => 'error'
         ], Response::HTTP_UNPROCESSABLE_ENTITY));
     }
