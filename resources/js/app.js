@@ -3,7 +3,7 @@ import { createApp } from 'vue';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
 import router from './router';
-import App from './components/Layouts/App.vue';
+import App from './pages/Layouts/App.vue';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'

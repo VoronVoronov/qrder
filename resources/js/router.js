@@ -4,7 +4,7 @@ const routes = [
     {
         path: '/',
         name: 'dashboard',
-        component: () => import('./components/Dashboard.vue'),
+        component: () => import('./pages/Dashboard.vue'),
         meta: {
             requiresAuth: true
         }
@@ -12,7 +12,7 @@ const routes = [
     {
         path: '/login',
         name: 'login',
-        component: () => import('./components/Users/Login.vue'),
+        component: () => import('./pages/Users/Login.vue'),
         meta: {
             requiresAuth: false
         }
@@ -20,7 +20,7 @@ const routes = [
     {
         path: '/register',
         name: 'register',
-        component: () => import('./components/Users/Register.vue'),
+        component: () => import('./pages/Users/Register.vue'),
         meta: {
             requiresAuth: false
         }
