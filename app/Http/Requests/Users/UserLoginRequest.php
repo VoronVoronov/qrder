@@ -38,10 +38,10 @@ class UserLoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => 'Поле email обязательно для заполнения',
-            'email.email' => 'Поле email должно быть валидным email адресом',
-            'password.required' => 'Поле пароль обязательно для заполнения',
-            'password.min' => 'Поле пароль должно быть не менее 8 символов',
+            'email.required' => __('main.users.login.email.required'),
+            'email.email' => __('main.users.login.email.email'),
+            'password.required' => __('main.users.login.password.required'),
+            'password.min' => __('main.users.login.password.min'),
         ];
     }
 
@@ -54,7 +54,7 @@ class UserLoginRequest extends FormRequest
     {
         return [
             'email' => 'email',
-            'password' => 'пароль',
+            'password' => 'password',
         ];
     }
 
@@ -69,7 +69,7 @@ class UserLoginRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'errors' => $validator->errors(),
-            'message' => 'Проверьте правильность введенных данных',
+            'message' => __('main.validation'),
             'status' => 'error'
         ], Response::HTTP_UNPROCESSABLE_ENTITY));
     }
