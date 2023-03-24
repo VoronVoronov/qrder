@@ -105,9 +105,10 @@ export default {
                     this.alert.title = response.data.message
                     this.alert.type = response.data.status
                     this.alert.show = true
+                    localStorage.setItem('token', response.data.data.token)
                     setTimeout(() => {
                         this.alert.show = false
-                        this.$router.push({ name: 'login' })
+                        this.$router.push({ name: 'dashboard' })
                     }, 2000)
                 })
                 .catch(error => {
