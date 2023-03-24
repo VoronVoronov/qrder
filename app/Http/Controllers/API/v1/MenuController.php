@@ -13,7 +13,7 @@ use App\Traits\ResponsesTrait;
 
 class MenuController extends Controller
 {
-    public ResponsesTrait $response;
+    use ResponsesTrait;
     public function __construct()
     {
         $this->middleware('auth:api', ['except' => []]);
@@ -22,18 +22,18 @@ class MenuController extends Controller
     public function index(MenuRepository $menuRepository): JsonResponse
     {
         try{
-            return $this->response->success($menuRepository->index(), 'Меню', Response::HTTP_OK);
+            return $this->success($menuRepository->index(), 'Меню', Response::HTTP_OK);
         } catch (Exception) {
-            return $this->response->error('Системная ошибка. Попробуйте позже', Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->error('Системная ошибка. Попробуйте позже', Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
     public function get(MenuRepository $menuRepository, $id): JsonResponse
     {
         try{
-            return $this->response->success($menuRepository->get($id), 'Меню', Response::HTTP_OK);
+            return $this->success($menuRepository->get($id), 'Меню', Response::HTTP_OK);
         } catch (Exception $e) {
-            return $this->response->error($e->getMessage(), Response::HTTP_NOT_FOUND);
+            return $this->error($e->getMessage(), Response::HTTP_NOT_FOUND);
         }
     }
 
@@ -41,9 +41,9 @@ class MenuController extends Controller
     {
         try{
             $created = $menuRepository->create($request);
-            return $this->response->success($created['menu'], 'Меню создано', Response::HTTP_CREATED);
+            return $this->success($created['menu'], 'Меню создано', Response::HTTP_CREATED);
         } catch (Exception $e) {
-            return $this->response->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -51,9 +51,9 @@ class MenuController extends Controller
     {
         try{
             $updated = $menuRepository->update($request, $id);
-            return $this->response->success($updated['menu'], 'Меню обновлено', Response::HTTP_OK);
+            return $this->success($updated['menu'], 'Меню обновлено', Response::HTTP_OK);
         } catch (Exception $e) {
-            return $this->response->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
@@ -61,9 +61,9 @@ class MenuController extends Controller
     {
         try{
             $menuRepository->delete($id);
-            return $this->response->success(null, 'Меню удалено', Response::HTTP_OK);
+            return $this->success(null, 'Меню удалено', Response::HTTP_OK);
         } catch (Exception $e) {
-            return $this->response->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 }
