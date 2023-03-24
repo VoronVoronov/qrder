@@ -108,10 +108,10 @@ export default {
                     this.alert.title = error.response.data.message
                     this.alert.type = error.response.data.status
                     this.alert.show = true
-                    if(error.response.data.errors.email !== null) {
+                    if(error.response.data.errors.hasOwnProperty('email')) {
                         this.alert.data.email = error.response.data.errors.email[0]
                     }
-                    if(error.response.data.errors.password !== null) {
+                    if(error.response.data.errors.hasOwnProperty('password')) {
                         this.alert.data.password = error.response.data.errors.password[0]
                     }
                     setTimeout(() => {
