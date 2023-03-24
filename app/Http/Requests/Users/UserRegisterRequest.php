@@ -27,6 +27,7 @@ class UserRegisterRequest extends FormRequest
         return [
             'email' => 'required|email|unique:users',
             'password' => 'required|min:8|confirmed',
+            'agreement' => 'required|accepted',
         ];
     }
 
@@ -44,6 +45,8 @@ class UserRegisterRequest extends FormRequest
             'password.required' => __('main.users.register.password.required'),
             'password.min' => __('main.users.register.password.min'),
             'password.confirmed' => __('main.users.register.password.confirmed'),
+            'agreement.required' => __('main.users.register.agreement.required'),
+            'agreement.accepted' => __('main.users.register.agreement.accepted'),
         ];
     }
 

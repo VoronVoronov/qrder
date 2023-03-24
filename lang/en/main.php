@@ -14,6 +14,10 @@ return [
                 'min' => 'Password must be at least 8 characters',
                 'confirmed' => 'Passwords do not match',
             ],
+            'agreement' => [
+                'required' => 'Agreement field is required',
+                'accepted' => 'Agreement field must be accepted',
+            ]
         ],
         'login' => [
             'email' => [

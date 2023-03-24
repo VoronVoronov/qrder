@@ -22,7 +22,7 @@
                             <el-input type="password" v-model="form.password_confirmation" show-password :placeholder="$t('users.password_confirmation')"></el-input>
                         </el-form-item>
                         <el-form-item>
-                            <el-checkbox v-model="form.agree" :label="$t('users.agree_checkbox')" @click="showPolicy()"></el-checkbox>
+                            <el-checkbox v-model="form.agreement" :label="$t('users.agree_checkbox')" @click="showPolicy()"></el-checkbox>
                         </el-form-item>
                         <el-form-item>
                             <el-button type="success" @click="register()">{{ $t('users.sign_up')}}</el-button>
@@ -70,7 +70,7 @@ export default {
                 email: '',
                 password: '',
                 password_confirmation: '',
-                agree: false
+                agreement: false
             },
             alert: {
                 title: null,
