@@ -35,6 +35,7 @@ class Loggers
             $log->headers = json_encode($request->headers->all());
             $log->method = $request->method();
             $log->input = json_encode($request->all());
+            $log->response = json_encode($request->response()->getData());
             $log->save();
         }
     }

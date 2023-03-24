@@ -17,5 +17,6 @@ class Logs extends Model
         'headers',
         'method',
         'input',
+        'response'
     ];
 }

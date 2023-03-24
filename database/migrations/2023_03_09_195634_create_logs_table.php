@@ -20,6 +20,7 @@ return new class extends Migration
             $table->longText('headers')->nullable();
             $table->string('method',10)->nullable();
             $table->longText('input')->nullable();
+            $table->longText('response')->nullable();
             $table->timestamps();
         });
     }
