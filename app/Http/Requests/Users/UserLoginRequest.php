@@ -25,7 +25,7 @@ class UserLoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required|email',
+            'phone' => 'required',
             'password' => 'required|min:8',
         ];
     }
@@ -38,8 +38,7 @@ class UserLoginRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'email.required' => __('main.users.login.email.required'),
-            'email.email' => __('main.users.login.email.email'),
+            'phone.required' => __('main.users.login.email.required'),
             'password.required' => __('main.users.login.password.required'),
             'password.min' => __('main.users.login.password.min'),
         ];
@@ -53,7 +52,7 @@ class UserLoginRequest extends FormRequest
     public function attributes(): array
     {
         return [
-            'email' => 'email',
+            'phone' => 'phone',
             'password' => 'password',
         ];
     }

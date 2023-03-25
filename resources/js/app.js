@@ -8,6 +8,7 @@ import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 import { createI18n } from 'vue-i18n'
+import { vMaska } from "maska"
 import RU from './locales/RU'
 import EN from './locales/EN'
 import KZ from './locales/KZ'
@@ -26,4 +27,5 @@ app.use(ElementPlus)
 app.use(VueAxios, axios);
 app.use(router);
 app.use(i18n)
+app.directive("maska", vMaska)
 app.mount('#app');

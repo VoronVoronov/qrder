@@ -43,7 +43,7 @@ class UserRepository implements UserRepositoryInterface
      */
     public function login(Request $request): array
     {
-        $credentials = $request->only('email', 'password');
+        $credentials = $request->only('phone', 'password');
         $token = Auth::attempt($credentials);
         if (!$token) {
             throw new Exception('Вы ввели неверный email или пароль');

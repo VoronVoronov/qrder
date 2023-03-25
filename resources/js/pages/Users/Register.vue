@@ -12,6 +12,9 @@
                     :show-close="false"
                 >
                     <el-form>
+                        <el-form-item :error="this.alert.data.phone">
+                            <el-input v-model="form.phone" :placeholder="$t('users.phone')" v-maska data-maska="+7 7## ###-##-##"></el-input>
+                        </el-form-item>
                         <el-form-item :error="this.alert.data.email">
                             <el-input v-model="form.email" placeholder="E-mail"></el-input>
                         </el-form-item>
@@ -70,6 +73,7 @@ export default {
                 email: '',
                 password: '',
                 password_confirmation: '',
+                phone: '',
                 agreement: false
             },
             alert: {
@@ -84,14 +88,12 @@ export default {
         showPolicy() {
             this.policy = true
             this.dialog = false
-            setTimeout(() => {
-                setInterval(() => {
-                    if (this.second > 0) {
-                        this.second -= 1
-                    }else{
-                        this.closeStatus = false
-                    }
-                }, 1000);
+            window.setInterval(() => {
+                if (this.second > 0) {
+                    this.second--
+                }else{
+                    this.closeStatus = false
+                }
             }, 1000);
         },
         closePolicy(){
@@ -115,6 +117,9 @@ export default {
                     this.alert.title = error.response.data.message
                     this.alert.type = error.response.data.status
                     this.alert.show = true
+                    if(error.response.data.errors.hasOwnProperty('phone')) {
+                        this.alert.data.phone = error.response.data.errors.phone[0]
+                    }
                     if(error.response.data.errors.hasOwnProperty('email')) {
                         this.alert.data.email = error.response.data.errors.email[0]
                     }

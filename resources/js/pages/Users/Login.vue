@@ -12,8 +12,8 @@
                     :show-close="false"
                 >
                     <el-form>
-                        <el-form-item :error="this.alert.data.email">
-                            <el-input v-model="form.email" placeholder="E-mail"></el-input>
+                        <el-form-item :error="this.alert.data.phone">
+                            <el-input v-model="form.phone" :placeholder="$t('users.phone')" v-maska data-maska="+7 7## ###-##-##"></el-input>
                         </el-form-item>
                         <el-form-item :error="this.alert.data.password">
                             <el-input type="password" v-model="form.password" show-password :placeholder="$t('users.password')"></el-input>
@@ -39,7 +39,7 @@ import Alert from '../../components/alert.vue'
             return {
                 dialog: true,
                 form: {
-                    email: '',
+                    phone: '',
                     password: ''
                 },
                 alert: {
@@ -68,8 +68,8 @@ import Alert from '../../components/alert.vue'
                         this.alert.title = error.response.data.message
                         this.alert.type = error.response.data.status
                         this.alert.show = true
-                        if(error.response.data.errors.hasOwnProperty('email')) {
-                            this.alert.data.email = error.response.data.errors.email[0]
+                        if(error.response.data.errors.hasOwnProperty('phone')) {
+                            this.alert.data.phone = error.response.data.errors.phone[0]
                         }
                         if(error.response.data.errors.hasOwnProperty('password')) {
                             this.alert.data.password = error.response.data.errors.password[0]
