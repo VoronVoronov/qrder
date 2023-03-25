@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('email')->unique();
             $table->string('password');
-            $table->string('phone')->unique();
             $table->integer('status')->default(1);
             $table->string('registration_ip');
             $table->dateTime('registration_date');
