@@ -26,13 +26,13 @@ class UserRepository implements UserRepositoryInterface
         $user = $this->user->create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
+            'phone' => preg_replace('/[^0-9]/', '', $request->phone),
             'password' => Hash::make($request->password),
             'registration_ip' => $request->ip(),
             'registration_date' => now(),
         ]);
         if(!$user){
-            throw new Exception('Системная ошибка. Попробуйте позже');
+            throw new Exception(__('main.system_error'));
         }
 
         return ['token' => Auth::login($user), 'user' => $user];
@@ -43,10 +43,12 @@ class UserRepository implements UserRepositoryInterface
      */
     public function login(Request $request): array
     {
-        $credentials = $request->only('phone', 'password');
-        $token = Auth::attempt($credentials);
+        $token = Auth::attempt([
+            'phone' => preg_replace('/[^0-9]/', '', $request->phone),
+            'password' => $request->password,
+        ]);
         if (!$token) {
-            throw new Exception('Вы ввели неверный email или пароль');
+            throw new Exception(__('main.users.login.unauthorized'));
         }
         $user = Auth::user();
         User::where(['id' => $user->id])->update([
@@ -63,7 +65,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = Auth::user();
         if(!$user){
-            throw new Exception('Вы не авторизованы');
+            throw new Exception(__('main.unauthorized'));
         }
         return ['user' => $user];
     }

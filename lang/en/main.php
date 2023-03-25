@@ -2,6 +2,8 @@
 
 return [
     'validation' => 'Check the correctness of the entered data',
+    'system_error' => 'System error. Try again later',
+    'unauthorized' => 'You are not authorized',
     'users' => [
         'register' => [
             'email' => [
@@ -31,7 +33,8 @@ return [
             'password' => [
                 'required' => 'Password field is required',
                 'min' => 'Password must be at least 8 characters',
-            ]
+            ],
+            'unauthorized' => 'Phone number or password is incorrect'
         ]
     ]
 ];
