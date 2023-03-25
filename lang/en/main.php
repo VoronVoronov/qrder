@@ -9,6 +9,10 @@ return [
                 'email' => 'Email must be valid email address',
                 'unique' => 'User with this email already exists',
             ],
+            'phone' => [
+                'required' => 'Phone field is required',
+                'unique' => 'User with this phone already exists',
+            ],
             'password' => [
                 'required' => 'Password field is required',
                 'min' => 'Password must be at least 8 characters',

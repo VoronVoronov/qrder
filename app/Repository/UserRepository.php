@@ -26,6 +26,7 @@ class UserRepository implements UserRepositoryInterface
         $user = $this->user->create([
             'name' => $request->name,
             'email' => $request->email,
+            'phone' => $request->phone,
             'password' => Hash::make($request->password),
             'registration_ip' => $request->ip(),
             'registration_date' => now(),
