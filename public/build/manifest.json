@@ -1,0 +1,63 @@
+{
+  "_alert-d703d660.js": {
+    "css": [
+      "assets/alert-fb3fa00d.css"
+    ],
+    "file": "assets/alert-d703d660.js",
+    "imports": [
+      "resources/js/app.js"
+    ]
+  },
+  "alert.css": {
+    "file": "assets/alert-fb3fa00d.css",
+    "src": "alert.css"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app-5b913188.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app-5b913188.css"
+    ],
+    "dynamicImports": [
+      "resources/js/pages/Dashboard.vue",
+      "resources/js/pages/Users/Login.vue",
+      "resources/js/pages/Users/Register.vue"
+    ],
+    "file": "assets/app-375d07d5.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/pages/Dashboard.vue": {
+    "file": "assets/Dashboard-1b279284.js",
+    "imports": [
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/Dashboard.vue"
+  },
+  "resources/js/pages/Users/Login.vue": {
+    "file": "assets/Login-251bd7e3.js",
+    "imports": [
+      "_alert-d703d660.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/Users/Login.vue"
+  },
+  "resources/js/pages/Users/Register.vue": {
+    "file": "assets/Register-07a23451.js",
+    "imports": [
+      "_alert-d703d660.js",
+      "resources/js/app.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/pages/Users/Register.vue"
+  },
+  "resources/sass/app.scss": {
+    "file": "assets/app-67dcdfd2.css",
+    "isEntry": true,
+    "src": "resources/sass/app.scss"
+  }
+}
