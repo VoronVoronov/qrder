@@ -42,6 +42,7 @@ return [
             'unauthorized' => 'Phone number or password is incorrect',
             'success' => 'You have successfully logged in!',
             'user_info' => 'User information',
-        ]
+        ],
+        'logout' => 'You have successfully logged out!'
     ]
 ];

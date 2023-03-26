@@ -49,4 +49,14 @@ class UsersController extends Controller
         }
     }
 
+    public function logout(UserRepository $userRepository): JsonResponse
+    {
+        try{
+            $userRepository->logout();
+            return $this->success(null, __('main.users.logout'), Response::HTTP_OK);
+        } catch (Exception $e) {
+            return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }

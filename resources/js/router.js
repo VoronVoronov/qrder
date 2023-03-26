@@ -49,6 +49,7 @@ router.beforeEach((to, from, next) => {
     if (requiresAuth && !token) {
         next('/login')
     } else {
+        window.axios.defaults.headers.common['Authorization'] = 'Bearer ' + token
         if (to.name === 'login' || to.name === 'register') {
             if (token != null) {
                 next('/')

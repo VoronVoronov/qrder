@@ -30,6 +30,7 @@
 </template>
 <script>
 import Alert from '../../components/alert.vue'
+import { mapMutations } from 'vuex';
     export default {
         name: 'Login',
         components:{
@@ -51,6 +52,7 @@ import Alert from '../../components/alert.vue'
             }
         },
         methods: {
+            ...mapMutations(['setAuthenticated']),
             login() {
                 this.alert.data = []
                 axios.post('/api/v1/users/login', this.form)
@@ -62,6 +64,7 @@ import Alert from '../../components/alert.vue'
                         setTimeout(() => {
                             this.alert.show = false
                             this.$router.push({ name: 'dashboard' })
+                            this.setAuthenticated(true);
                         }, 2000)
                     })
                     .catch(error => {

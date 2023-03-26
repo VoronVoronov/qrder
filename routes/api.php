@@ -24,6 +24,7 @@ Route::group([
         Route::post('register', [UsersController::class, 'register']);
         Route::post('login', [UsersController::class, 'login']);
         Route::get('profile', [UsersController::class, 'profile']);
+        Route::post('logout', [UsersController::class, 'logout']);
     });
     Route::group([
         'prefix' => 'menu'

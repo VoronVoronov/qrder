@@ -12,6 +12,7 @@ import { vMaska } from "maska"
 import RU from './locales/RU'
 import EN from './locales/EN'
 import KZ from './locales/KZ'
+import store from './store.js';
 const i18n = createI18n({
     locale: 'RU',
     fallbackLocale: 'RU',
@@ -28,4 +29,5 @@ app.use(VueAxios, axios);
 app.use(router);
 app.use(i18n)
 app.directive("maska", vMaska)
+app.use(store)
 app.mount('#app');

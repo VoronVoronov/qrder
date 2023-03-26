@@ -57,6 +57,8 @@
 </template>
 <script>
 import Alert from '../../components/alert.vue'
+import { mapMutations } from 'vuex';
+
 export default {
     name: 'Register',
     components:{
@@ -85,6 +87,7 @@ export default {
         }
     },
     methods: {
+        ...mapMutations(['setAuthenticated']),
         showPolicy() {
             this.policy = true
             this.dialog = false
@@ -110,6 +113,7 @@ export default {
                     localStorage.setItem('token', response.data.data.token)
                     setTimeout(() => {
                         this.alert.show = false
+                        this.setAuthenticated(true);
                         this.$router.push({ name: 'dashboard' })
                     }, 2000)
                 })
