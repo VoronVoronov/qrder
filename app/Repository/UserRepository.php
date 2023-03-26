@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Contracts\UserRepositoryInterface;
 use App\Models\User;
+use App\Traits\UserLogsTrait;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserRepository implements UserRepositoryInterface
 {
+    use UserLogsTrait;
     private User $user;
 
     public function __construct(User $user)
@@ -32,9 +34,9 @@ class UserRepository implements UserRepositoryInterface
             'registration_date' => now(),
         ]);
         if(!$user){
-            throw new Exception(__('main.system_error'));
+            throw new Exception(__('main.system.system_error'));
         }
-
+        $this->userLogs($user, $request, __('main.system.registered'));
         return ['token' => Auth::login($user), 'user' => $user];
     }
 
@@ -55,6 +57,7 @@ class UserRepository implements UserRepositoryInterface
             'last_login_ip' => $request->ip(),
             'last_login_date' => now(),
         ]);
+        $this->userLogs($user, $request, __('main.system.registered'));
         return ['token' => $token, 'user' => $user];
     }
 
@@ -65,7 +68,7 @@ class UserRepository implements UserRepositoryInterface
     {
         $user = Auth::user();
         if(!$user){
-            throw new Exception(__('main.unauthorized'));
+            throw new Exception(__('main.system.unauthorized'));
         }
         return ['user' => $user];
     }

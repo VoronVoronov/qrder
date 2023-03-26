@@ -71,7 +71,7 @@ class UserRegisterRequest extends FormRequest
     {
         throw new HttpResponseException(response()->json([
             'errors' => $validator->errors(),
-            'message' => __('main.validation'),
+            'message' => __('main.system.validation'),
             'status' => 'error'
         ], Response::HTTP_UNPROCESSABLE_ENTITY));
     }

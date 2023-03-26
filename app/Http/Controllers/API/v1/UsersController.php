@@ -23,7 +23,7 @@ class UsersController extends Controller
     {
         try {
             $token = $userRepository->register($request);
-            return $this->success($token, 'Вы успешно зарегистрировались!', Response::HTTP_CREATED);
+            return $this->success($token, __('main.users.register.success'), Response::HTTP_CREATED);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -33,7 +33,7 @@ class UsersController extends Controller
     {
         try {
             $token = $userRepository->login($request);
-            return $this->success($token, 'Вы успешно авторизовались!', Response::HTTP_OK);
+            return $this->success($token, __('main.users.login.success'), Response::HTTP_OK);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -43,7 +43,7 @@ class UsersController extends Controller
     {
         try{
             $user = $userRepository->profile();
-            return $this->success($user, 'Данные пользователя', Response::HTTP_OK);
+            return $this->success($user, __('main.users.login.user_info'), Response::HTTP_OK);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

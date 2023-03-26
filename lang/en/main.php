@@ -1,9 +1,13 @@
 <?php
 
 return [
-    'validation' => 'Check the correctness of the entered data',
-    'system_error' => 'System error. Try again later',
-    'unauthorized' => 'You are not authorized',
+    'system' => [
+        'registered' => 'User successfully registered',
+        'logged_in' => 'User successfully logged in',
+        'validation' => 'Check the correctness of the entered data',
+        'system_error' => 'System error. Try again later',
+        'unauthorized' => 'You are not authorized',
+    ],
     'users' => [
         'register' => [
             'email' => [
@@ -23,7 +27,8 @@ return [
             'agreement' => [
                 'required' => 'Agreement field is required',
                 'accepted' => 'Agreement field must be accepted',
-            ]
+            ],
+            'success' => 'You have successfully registered!',
         ],
         'login' => [
             'email' => [
@@ -34,7 +39,9 @@ return [
                 'required' => 'Password field is required',
                 'min' => 'Password must be at least 8 characters',
             ],
-            'unauthorized' => 'Phone number or password is incorrect'
+            'unauthorized' => 'Phone number or password is incorrect',
+            'success' => 'You have successfully logged in!',
+            'user_info' => 'User information',
         ]
     ]
 ];
