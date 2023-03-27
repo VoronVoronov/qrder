@@ -14,24 +14,28 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "api" middleware group. Make something great!
 |
 */
-
 Route::group([
-    'prefix' => 'v1'
-], function(){
+    'prefix' => '{locale}',
+    'where' => ['locale' => '[a-zA-Z]{2}'],
+    'middleware' => 'SetLocale'], function() {
     Route::group([
-        'prefix' => 'users'
-    ], function(){
-        Route::post('register', [UsersController::class, 'register']);
-        Route::post('login', [UsersController::class, 'login']);
-        Route::get('profile', [UsersController::class, 'profile']);
-        Route::post('logout', [UsersController::class, 'logout']);
-    });
-    Route::group([
-        'prefix' => 'menu'
-    ], function(){
-        Route::get('/', [MenuController::class, 'index']);
-        Route::post('create', [MenuController::class, 'create']);
-        Route::put('update/{id}', [MenuController::class, 'update']);
-        Route::delete('delete/{id}', [MenuController::class, 'delete']);
+        'prefix' => 'v1'
+    ], function () {
+        Route::group([
+            'prefix' => 'users'
+        ], function () {
+            Route::post('register', [UsersController::class, 'register']);
+            Route::post('login', [UsersController::class, 'login']);
+            Route::get('profile', [UsersController::class, 'profile']);
+            Route::post('logout', [UsersController::class, 'logout']);
+        });
+        Route::group([
+            'prefix' => 'menu'
+        ], function () {
+            Route::get('/', [MenuController::class, 'index']);
+            Route::post('create', [MenuController::class, 'create']);
+            Route::put('update/{id}', [MenuController::class, 'update']);
+            Route::delete('delete/{id}', [MenuController::class, 'delete']);
+        });
     });
 });
