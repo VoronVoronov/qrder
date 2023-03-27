@@ -9,7 +9,7 @@ class SetLocale
 {
     public function handle($request, Closure $next)
     {
-        app()->setLocale($request->segment(1));
+        app()->setLocale($request->segment(2));
         return $next($request);
     }
 }
