@@ -26,7 +26,7 @@ class UserRegisterRequest extends FormRequest
     {
         return [
             'email' => 'required|email|unique:users',
-            'phone' => 'required|unique:users',
+            'phone' => 'required|unique:users|min:12|max:12',
             'password' => 'required|min:8|confirmed',
             'agreement' => 'required|accepted',
         ];
@@ -45,6 +45,8 @@ class UserRegisterRequest extends FormRequest
             'email.unique' => __('main.users.register.email.unique'),
             'phone.required' => __('main.users.register.phone.required'),
             'phone.unique' => __('main.users.register.phone.unique'),
+            'phone.min' => __('main.users.register.phone.min'),
+            'phone.max' => __('main.users.register.phone.max'),
             'password.required' => __('main.users.register.password.required'),
             'password.min' => __('main.users.register.password.min'),
             'password.confirmed' => __('main.users.register.password.confirmed'),

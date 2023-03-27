@@ -18,6 +18,8 @@ return [
             'phone' => [
                 'required' => 'Phone field is required',
                 'unique' => 'User with this phone already exists',
+                'min' => 'Phone field must be at least 12 characters',
+                'max' => 'Phone field must be no more than 12 characters',
             ],
             'password' => [
                 'required' => 'Password field is required',
@@ -38,6 +40,11 @@ return [
             'password' => [
                 'required' => 'Password field is required',
                 'min' => 'Password must be at least 8 characters',
+            ],
+            'phone' => [
+                'required' => 'Phone field is required',
+                'min' => 'Phone field must be at least 12 characters',
+                'max' => 'Phone field must be no more than 12 characters',
             ],
             'unauthorized' => 'Phone number or password is incorrect',
             'success' => 'You have successfully logged in!',
