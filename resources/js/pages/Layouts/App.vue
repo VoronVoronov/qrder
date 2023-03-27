@@ -44,13 +44,10 @@
     </template>
 </template>
 <script>
-import Alert from '../../components/alert.vue'
 import {mapGetters, mapMutations} from 'vuex';
+import {ElNotification} from "element-plus";
     export default {
         name: 'App',
-        components:{
-            Alert
-        },
         data() {
             return {
                 activeIndex: 'home',
@@ -78,18 +75,19 @@ import {mapGetters, mapMutations} from 'vuex';
                 localStorage.removeItem('token')
                 axios.post('/api/v1/users/logout')
                     .then(response => {
-                        this.alert.title = response.data.message
-                        this.alert.type = response.data.status
-                        this.alert.show = true
+                        ElNotification({
+                            message: response.data.message,
+                            type: 'success',
+                            showClose: false
+                        })
                     })
                     .catch(error => {
-                        this.alert.title = error.response.data.message
-                        this.alert.type = error.response.data.status
-                        this.alert.show = true
+                        ElNotification({
+                            message: error.response.data.message,
+                            type: 'error',
+                            showClose: false
+                        })
                     })
-                setTimeout(() => {
-                    this.alert.show = false
-                }, 3000)
                 this.setAuthenticated(false);
                 this.$router.push({ name: 'login' })
             }

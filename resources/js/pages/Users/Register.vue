@@ -1,5 +1,4 @@
 <template>
-    <Alert :title="alert.title" :type="alert.type" :show="alert.show"></Alert>
     <div class="container">
         <el-row>
             <el-col :span="24" :md="12">
@@ -56,14 +55,11 @@
     </div>
 </template>
 <script>
-import Alert from '../../components/alert.vue'
 import { mapMutations } from 'vuex';
+import {ElNotification} from "element-plus";
 
 export default {
     name: 'Register',
-    components:{
-      Alert
-    },
     data() {
         return {
             second: 30,
@@ -79,9 +75,6 @@ export default {
                 agreement: false
             },
             alert: {
-                title: null,
-                type: null,
-                show: false,
                 data: []
             }
         }
@@ -107,20 +100,23 @@ export default {
             this.alert.data = []
             axios.post('/api/v1/users/register', this.form)
                 .then(response => {
-                    this.alert.title = response.data.message
-                    this.alert.type = response.data.status
-                    this.alert.show = true
                     localStorage.setItem('token', response.data.data.token)
+                    ElNotification({
+                        message: response.data.message,
+                        type: 'success',
+                        showClose: false
+                    })
                     setTimeout(() => {
-                        this.alert.show = false
                         this.setAuthenticated(true);
                         this.$router.push({ name: 'dashboard' })
                     }, 2000)
                 })
                 .catch(error => {
-                    this.alert.title = error.response.data.message
-                    this.alert.type = error.response.data.status
-                    this.alert.show = true
+                    ElNotification({
+                        message: error.response.data.message,
+                        type: 'error',
+                        showClose: false
+                    })
                     if(error.response.data.errors.hasOwnProperty('phone')) {
                         this.alert.data.phone = error.response.data.errors.phone[0]
                     }
@@ -133,9 +129,6 @@ export default {
                     if(error.response.data.errors.hasOwnProperty('agreement')) {
                         this.alert.data.agreement = error.response.data.errors.agreement[0]
                     }
-                    setTimeout(() => {
-                        this.alert.show = false
-                    }, 5000)
                 })
         }
     }

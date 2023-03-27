@@ -5,7 +5,7 @@ return [
         'registered' => 'User successfully registered',
         'logged_in' => 'User successfully logged in',
         'validation' => 'Check the correctness of the entered data',
-        'system_error' => 'System error. Try again later',
+        'system_error' => 'An error occurred on the server. Please try again later.',
         'unauthorized' => 'You are not authorized',
     ],
     'users' => [

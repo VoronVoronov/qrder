@@ -25,6 +25,6 @@ class Authenticate extends Middleware
 
     protected function unauthenticated($request, array $guards)
     {
-        return response()->json(['status' => 'error', 'message' => 'Вы не авторизованы'], Response::HTTP_UNAUTHORIZED);
+        return response()->json(['status' => 'error', __('main.system.unauthorized')], Response::HTTP_UNAUTHORIZED);
     }
 }

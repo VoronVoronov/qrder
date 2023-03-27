@@ -53,10 +53,16 @@ class UserRepository implements UserRepositoryInterface
             throw new Exception(__('main.users.login.unauthorized'));
         }
         $user = Auth::user();
-        User::where(['id' => $user->id])->update([
+        if (!$user) {
+            throw new Exception(__('main.system.system_error'));
+        }
+        $last_login = User::where(['id' => $user->id])->update([
             'last_login_ip' => $request->ip(),
             'last_login_date' => now(),
         ]);
+        if (!$last_login) {
+            throw new Exception(__('main.system.system_error'));
+        }
         $this->userLogs($user, $request, __('main.system.registered'));
         return ['token' => $token, 'user' => $user];
     }

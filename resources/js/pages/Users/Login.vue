@@ -1,5 +1,4 @@
 <template>
-    <Alert :title="alert.title" :type="alert.type" :show="alert.show"></Alert>
     <div class="container">
         <el-row>
             <el-col :span="24" :md="12">
@@ -29,61 +28,64 @@
     </div>
 </template>
 <script>
-import Alert from '../../components/alert.vue'
 import { mapMutations } from 'vuex';
-    export default {
-        name: 'Login',
-        components:{
-            Alert
-        },
-        data() {
-            return {
-                dialog: true,
-                form: {
-                    phone: '',
-                    password: ''
-                },
-                alert: {
-                    title: null,
-                    type: null,
-                    show: false,
-                    data: []
-                }
-            }
-        },
-        methods: {
-            ...mapMutations(['setAuthenticated']),
-            login() {
-                this.alert.data = []
-                axios.post('/api/v1/users/login', this.form)
-                    .then(response => {
-                        localStorage.setItem('token', response.data.data.token)
-                        this.alert.title = response.data.message
-                        this.alert.type = response.data.status
-                        this.alert.show = true
-                        setTimeout(() => {
-                            this.alert.show = false
-                            this.$router.push({ name: 'dashboard' })
-                            this.setAuthenticated(true);
-                        }, 2000)
-                    })
-                    .catch(error => {
-                        this.alert.title = error.response.data.message
-                        this.alert.type = error.response.data.status
-                        this.alert.show = true
-                        if(error.response.data.errors.hasOwnProperty('phone')) {
-                            this.alert.data.phone = error.response.data.errors.phone[0]
-                        }
-                        if(error.response.data.errors.hasOwnProperty('password')) {
-                            this.alert.data.password = error.response.data.errors.password[0]
-                        }
-                        setTimeout(() => {
-                            this.alert.show = false
-                        }, 5000)
-                    })
+import { ElNotification } from 'element-plus'
+export default {
+    name: 'Login',
+    data() {
+        return {
+            dialog: true,
+            form: {
+                phone: '',
+                password: ''
+            },
+            alert: {
+                data: []
             }
         }
+    },
+    methods: {
+        ...mapMutations(['setAuthenticated']),
+        login() {
+            this.alert.data = []
+            axios.post('/api/v1/users/login', this.form)
+                .then(response => {
+                    localStorage.setItem('token', response.data.data.token)
+                    ElNotification({
+                        message: response.data.message,
+                        type: 'success',
+                        showClose: false
+                    })
+                    setTimeout(() => {
+                        this.$router.push({ name: 'dashboard' })
+                        this.setAuthenticated(true);
+                    }, 2000)
+                })
+                .catch(error => {
+                    ElNotification({
+                        message: error.response.data.message,
+                        type: 'error',
+                        showClose: false
+                    })
+                    if(error.response.data.errors.hasOwnProperty('phone')) {
+                        this.alert.data.phone = error.response.data.errors.phone[0]
+                    }
+                    if(error.response.data.errors.hasOwnProperty('password')) {
+                        this.alert.data.password = error.response.data.errors.password[0]
+                    }
+                })
+
+        }
     }
+}
 </script>
 <style>
+.el-message{
+    width: 330px;
+    position: absolute;
+    right: 0;
+    float: right;
+    z-index: 9999;
+    margin: 10px 10px 10px 10px;
+}
 </style>
