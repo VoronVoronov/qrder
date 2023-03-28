@@ -63,7 +63,7 @@ class UserRepository implements UserRepositoryInterface
         if (!$last_login) {
             throw new Exception(__('main.system.system_error'));
         }
-        $this->userLogs($user, $request, __('main.system.registered'));
+        $this->userLogs($user, $request, __('main.system.logged_in'));
         return ['token' => $token, 'user' => $user];
     }
 
