@@ -14,12 +14,12 @@ import EN from './locales/EN'
 import KZ from './locales/KZ'
 import store from './store.js';
 const i18n = createI18n({
-    locale: 'RU',
-    fallbackLocale: 'RU',
+    locale: 'ru',
+    fallbackLocale: 'ru',
     messages: {
-        RU,
-        EN,
-        KZ
+        ru: RU,
+        en: EN,
+        kz: KZ
     }
 })
 

@@ -1,23 +1,23 @@
 {
   "resources/js/app.css": {
-    "file": "assets/app-496ec8c7.css",
+    "file": "assets/app-0b5003ab.css",
     "src": "resources/js/app.css"
   },
   "resources/js/app.js": {
     "css": [
-      "assets/app-496ec8c7.css"
+      "assets/app-0b5003ab.css"
     ],
     "dynamicImports": [
       "resources/js/pages/Dashboard.vue",
       "resources/js/pages/Users/Login.vue",
       "resources/js/pages/Users/Register.vue"
     ],
-    "file": "assets/app-15d109b4.js",
+    "file": "assets/app-d50343d2.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   },
   "resources/js/pages/Dashboard.vue": {
-    "file": "assets/Dashboard-6d2819c3.js",
+    "file": "assets/Dashboard-8d5d74e1.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -32,7 +32,7 @@
     "css": [
       "assets/Login-0f197c51.css"
     ],
-    "file": "assets/Login-731b6950.js",
+    "file": "assets/Login-0ccb9623.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -40,7 +40,7 @@
     "src": "resources/js/pages/Users/Login.vue"
   },
   "resources/js/pages/Users/Register.vue": {
-    "file": "assets/Register-3a415288.js",
+    "file": "assets/Register-19fbc391.js",
     "imports": [
       "resources/js/app.js"
     ],

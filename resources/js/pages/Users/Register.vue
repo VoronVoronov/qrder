@@ -57,6 +57,7 @@
 <script>
 import { mapMutations } from 'vuex';
 import {ElNotification} from "element-plus";
+import config from "../../config";
 
 export default {
     name: 'Register',
@@ -98,7 +99,7 @@ export default {
         },
         register() {
             this.alert.data = []
-            axios.post('/api/v1/users/register', this.form)
+            axios.post(config.API_URL + 'users/register', this.form)
                 .then(response => {
                     localStorage.setItem('token', response.data.data.token)
                     ElNotification({

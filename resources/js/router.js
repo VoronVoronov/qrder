@@ -1,4 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import config from "./config";
 
 const routes = [
     {
@@ -35,7 +36,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
     const token = localStorage.getItem('token')
     if(token != null){
-        axios.get('/api/v1/users/profile', {
+        axios.get(config.API_URL + 'users/profile', {
             headers: {
                 'Authorization': 'Bearer ' + token,
             }

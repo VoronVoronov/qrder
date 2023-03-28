@@ -10,6 +10,7 @@ const messages = {
         agree_checkbox: 'I agree with the user agreement and privacy policy',
         policy: 'User agreement and privacy policy',
         read: 'I have read. {msg} seconds left',
+        select_locale: 'Select language',
         agreement_text: '',
         policy_text: ''
     }

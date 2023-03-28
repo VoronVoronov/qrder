@@ -30,6 +30,8 @@
 <script>
 import { mapMutations } from 'vuex';
 import { ElNotification } from 'element-plus'
+import config from '../../config'
+import store from "../../store";
 export default {
     name: 'Login',
     data() {
@@ -48,7 +50,7 @@ export default {
         ...mapMutations(['setAuthenticated']),
         login() {
             this.alert.data = []
-            axios.post('/api/v1/users/login', this.form)
+            axios.post(config.API_URL + 'users/login', this.form)
                 .then(response => {
                     localStorage.setItem('token', response.data.data.token)
                     ElNotification({
