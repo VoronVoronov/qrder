@@ -7,6 +7,7 @@ import App from './pages/Layouts/App.vue';
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import 'element-plus/theme-chalk/display.css'
 import { createI18n } from 'vue-i18n'
 import { vMaska } from "maska"
 import RU from './locales/RU'

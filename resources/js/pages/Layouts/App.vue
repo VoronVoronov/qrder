@@ -2,42 +2,51 @@
     <SelectLocaleComponent/>
     <template v-if="this.showLayout">
         <template v-if="this.authenticated">
-            <div class="common-layout">
-                <el-container>
-                    <el-aside width="200px">
-                        <el-menu
-                            :default-active="activeIndex"
-                            mode="vertical"
-                            @select="handleMenuSelect"
-                        >
-                            <el-menu-item index="home">
-                                <i class="el-icon-house"></i>
-                                <span>Главная</span>
-                            </el-menu-item>
-                            <el-menu-item index="menu">
-                                <i class="el-icon-menu"></i>
-                                <span>Меню</span>
-                            </el-menu-item>
-                            <el-menu-item index="payments">
-                                <i class="el-icon-money"></i>
-                                <span>История платежей</span>
-                            </el-menu-item>
-                            <el-menu-item index="settings">
-                                <i class="el-icon-setting"></i>
-                                <span>Настройки</span>
-                            </el-menu-item>
-                            <el-menu-item index="logs">
-                                <i class="el-icon-document"></i>
-                                <span>Логи</span>
-                            </el-menu-item>
-                            <el-menu-item @click="logout()">
-                                <i class="el-icon-document"></i>
-                                <span>Выйти</span>
-                            </el-menu-item>
-                        </el-menu>
-                    </el-aside>
-                    <el-main><router-view></router-view></el-main>
-                </el-container>
+            <div class="container">
+                <el-header class="header">
+                    <!-- Шапка -->
+                </el-header>
+                <el-row>
+                    <el-col :xs="24" :sm="6" :lg="4">
+                        <el-aside width="200px">
+                            <el-menu
+                                :default-active="activeIndex"
+                                mode="vertical"
+                                @select="handleMenuSelect"
+                            >
+                                <el-menu-item index="home">
+                                    <i class="el-icon-house"></i>
+                                    <span>Главная</span>
+                                </el-menu-item>
+                                <el-menu-item index="menu">
+                                    <i class="el-icon-menu"></i>
+                                    <span>Меню</span>
+                                </el-menu-item>
+                                <el-menu-item index="payments">
+                                    <i class="el-icon-money"></i>
+                                    <span>История платежей</span>
+                                </el-menu-item>
+                                <el-menu-item index="settings">
+                                    <i class="el-icon-setting"></i>
+                                    <span>Настройки</span>
+                                </el-menu-item>
+                                <el-menu-item index="logs">
+                                    <i class="el-icon-document"></i>
+                                    <span>Логи</span>
+                                </el-menu-item>
+                                <el-menu-item @click="logout()">
+                                    <i class="el-icon-document"></i>
+                                    <span>Выйти</span>
+                                </el-menu-item>
+                            </el-menu>
+                        </el-aside>
+                    </el-col>
+                    <el-col :xs="24" :sm="18" :lg="20">
+                        <el-main>
+                            <router-view></router-view>
+                        </el-main>
+                    </el-col>
+                </el-row>
             </div>
         </template>
         <template v-if="!this.authenticated">
@@ -103,10 +112,30 @@ import config from "../../config";
 </script>
 <style>
 .el-menu{
-    background-color: #d3dce6;
     color: #333;
     text-align: center;
     line-height: 200px;
     min-height: 100vh;
+}
+ /* Шапка */
+ .header {
+     height: 60px;
+     background-color: #333;
+ }
+
+/* Контент */
+.content {
+    height: 100%;
+    background-color: #fff;
+}
+
+/* Адаптивность */
+@media screen and (max-width: 768px) {
+    .el-menu {
+        display: none;
+    }
+    .content {
+        width: 100%;
+    }
 }
 </style>
