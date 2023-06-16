@@ -24,14 +24,14 @@ class MenuController extends Controller
         try{
             return $this->success($menuRepository->index(), 'Меню', Response::HTTP_OK);
         } catch (Exception) {
-            return $this->error('Системная ошибка. Попробуйте позже', Response::HTTP_INTERNAL_SERVER_ERROR);
+            return $this->error(__('main.system.system_error'), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
     public function get(MenuRepository $menuRepository, $id): JsonResponse
     {
         try{
-            return $this->success($menuRepository->get($id), 'Меню', Response::HTTP_OK);
+            return $this->success($menuRepository->get($id), __('main.menu.title'), Response::HTTP_OK);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), Response::HTTP_NOT_FOUND);
         }
@@ -41,7 +41,7 @@ class MenuController extends Controller
     {
         try{
             $created = $menuRepository->create($request);
-            return $this->success($created['menu'], 'Меню создано', Response::HTTP_CREATED);
+            return $this->success($created['menu'], __('main.menu.created'), Response::HTTP_CREATED);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -51,7 +51,7 @@ class MenuController extends Controller
     {
         try{
             $updated = $menuRepository->update($request, $id);
-            return $this->success($updated['menu'], 'Меню обновлено', Response::HTTP_OK);
+            return $this->success($updated['menu'], __('main.menu.updated'), Response::HTTP_OK);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
@@ -61,7 +61,7 @@ class MenuController extends Controller
     {
         try{
             $menuRepository->delete($id);
-            return $this->success(null, 'Меню удалено', Response::HTTP_OK);
+            return $this->success(null, __('main.menu.deleted'), Response::HTTP_OK);
         } catch (Exception $e) {
             return $this->error($e->getMessage(), Response::HTTP_INTERNAL_SERVER_ERROR);
         }

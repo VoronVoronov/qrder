@@ -57,5 +57,12 @@ return [
             'active' => 'Active',
             'blocked' => 'Blocked',
         ],
+    ],
+    'menu' => [
+        'not_found' => 'Menu not found',
+        'title' => 'Menu',
+        'created' => 'Menu successfully created',
+        'updated' => 'Menu successfully updated',
+        'deleted' => 'Menu successfully deleted',
     ]
 ];

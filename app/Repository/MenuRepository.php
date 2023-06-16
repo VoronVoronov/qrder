@@ -30,7 +30,7 @@ class MenuRepository implements MenuRepositoryInterface
     {
         $menu = $this->menu->where(['id' => $id, 'user_id' => auth()->user()->id])->first();
         if(!$menu){
-            throw new Exception('Меню не найдено');
+            throw new Exception(__('main.menu.not_found'));
         }
         return ['menu' => $menu];
     }
@@ -51,7 +51,7 @@ class MenuRepository implements MenuRepositoryInterface
         ]);
 
         if(!$menu){
-            throw new Exception('Системная ошибка. Попробуйте позже');
+            throw new Exception(__('main.system.system_error'));
         }
 
         return ['menu' => $menu];
@@ -65,13 +65,13 @@ class MenuRepository implements MenuRepositoryInterface
     {
         $menu = $this->menu->where(['id' => $id, 'user_id' => auth()->user()->id])->first();
         if(!$menu){
-            throw new Exception('Меню не найдено');
+            throw new Exception(__('main.menu.not_found'));
         }
         $menu->name = $request->name;
         $menu->slug = $request->slug;
         $menu->image = $request->image ?? null;
         if(!$menu->save()){
-            throw new Exception('Системная ошибка. Попробуйте позже');
+            throw new Exception(__('main.system.system_error'));
         }
         return ['menu' => $menu];
     }
@@ -83,10 +83,10 @@ class MenuRepository implements MenuRepositoryInterface
     {
         $menu = $this->menu->where(['id' => $id, 'user_id' => auth()->user()->id])->first();
         if(!$menu){
-            throw new Exception('Меню не найдено');
+            throw new Exception(__('main.menu.not_found'));
         }
         if(!$menu->delete()){
-            throw new Exception('Системная ошибка. Попробуйте позже');
+            throw new Exception(__('main.system.system_error'));
         }
         return ['menu' => $menu];
     }
