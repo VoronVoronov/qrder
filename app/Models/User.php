@@ -54,6 +54,6 @@ class User extends Authenticatable implements JWTSubject
 
     public function getStatusAttribute($value): string
     {
-        return $value == 1 ? 'Активен' : 'Заблокирован';
+        return $value == 1 ? __('main.users.status.active') : __('main.users.status.blocked');
     }
 }

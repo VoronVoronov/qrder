@@ -28,6 +28,7 @@
                         </el-form-item>
                         <el-form-item>
                             <el-button type="success" @click="register()">{{ $t('users.sign_up')}}</el-button>
+                            <el-button type="primary" @click.native="$router.push('/login')">{{ $t('users.sign_in')}}</el-button>
                         </el-form-item>
                     </el-form>
                 </el-dialog>

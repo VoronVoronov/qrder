@@ -52,6 +52,10 @@ return [
             'user_info' => 'User information',
             'blocked' => 'Your account is blocked',
         ],
-        'logout' => 'You have successfully logged out!'
+        'logout' => 'You have successfully logged out!',
+        'status' => [
+            'active' => 'Active',
+            'blocked' => 'Blocked',
+        ],
     ]
 ];
