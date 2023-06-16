@@ -49,6 +49,7 @@ return [
             'unauthorized' => 'Phone number or password is incorrect',
             'success' => 'You have successfully logged in!',
             'user_info' => 'User information',
+            'blocked' => 'Your account is blocked',
         ],
         'logout' => 'You have successfully logged out!'
     ]

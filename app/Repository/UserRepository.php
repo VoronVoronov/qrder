@@ -52,6 +52,12 @@ class UserRepository implements UserRepositoryInterface
         if (!$token) {
             throw new Exception(__('main.users.login.unauthorized'));
         }
+        $status = User::where(['phone' => preg_replace('/[^0-9]/', '', $request->phone)])
+            ->where(['status' => 1])
+            ->first();
+        if (!$status) {
+            throw new Exception(__('main.users.login.blocked'));
+        }
         $user = Auth::user();
         if (!$user) {
             throw new Exception(__('main.system.system_error'));
