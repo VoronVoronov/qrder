@@ -7,6 +7,7 @@ return [
         'validation' => 'Check the correctness of the entered data',
         'system_error' => 'An error occurred on the server. Please try again later.',
         'unauthorized' => 'You are not authorized',
+        'failed_login' => 'Failed login attempt',
     ],
     'users' => [
         'register' => [

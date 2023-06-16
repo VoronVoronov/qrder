@@ -50,16 +50,19 @@ class UserRepository implements UserRepositoryInterface
             'password' => $request->password,
         ]);
         if (!$token) {
+            $this->userLogs(preg_replace('/[^0-9]/', '', $request->phone), $request, __('main.system.failed_login'));
             throw new Exception(__('main.users.login.unauthorized'));
         }
         $status = User::where(['phone' => preg_replace('/[^0-9]/', '', $request->phone)])
             ->where(['status' => 1])
             ->first();
         if (!$status) {
+            $this->userLogs(preg_replace('/[^0-9]/', '', $request->phone), $request, __('main.system.failed_login'));
             throw new Exception(__('main.users.login.blocked'));
         }
         $user = Auth::user();
         if (!$user) {
+            $this->userLogs(preg_replace('/[^0-9]/', '', $request->phone), $request, __('main.system.failed_login'));
             throw new Exception(__('main.system.system_error'));
         }
         $last_login = User::where(['id' => $user->id])->update([
@@ -67,6 +70,7 @@ class UserRepository implements UserRepositoryInterface
             'last_login_date' => now(),
         ]);
         if (!$last_login) {
+            $this->userLogs(preg_replace('/[^0-9]/', '', $request->phone), $request, __('main.system.failed_login'));
             throw new Exception(__('main.system.system_error'));
         }
         $this->userLogs($user, $request, __('main.system.logged_in'));
