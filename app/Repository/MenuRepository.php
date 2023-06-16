@@ -4,14 +4,14 @@ namespace App\Repository;
 
 use App\Contracts\MenuRepositoryInterface;
 use App\Models\Menu;
-use App\Traits\TranslitTrait;
+use App\Traits\TransliterateTrait;
 use Exception;
 use Illuminate\Http\Request;
 
 class MenuRepository implements MenuRepositoryInterface
 {
     private Menu $menu;
-    use TranslitTrait;
+    use TransliterateTrait;
 
 
     public function __construct(Menu $menu)

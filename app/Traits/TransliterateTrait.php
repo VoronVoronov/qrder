@@ -2,7 +2,7 @@
 
 namespace App\Traits;
 
-trait TranslitTrait{
+trait TransliterateTrait{
 
     public function translit($value): string
     {
