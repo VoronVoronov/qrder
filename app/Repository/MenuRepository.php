@@ -4,12 +4,15 @@ namespace App\Repository;
 
 use App\Contracts\MenuRepositoryInterface;
 use App\Models\Menu;
+use App\Traits\TranslitTrait;
 use Exception;
 use Illuminate\Http\Request;
 
 class MenuRepository implements MenuRepositoryInterface
 {
     private Menu $menu;
+    use TranslitTrait;
+
 
     public function __construct(Menu $menu)
     {
@@ -46,7 +49,7 @@ class MenuRepository implements MenuRepositoryInterface
             'rate_id' => $request->rate_id,
             'user_id' => $request->user_id,
             'name' => $request->name,
-            'slug' => $request->slug,
+            'slug' => $this->translit($request->name),
             'image' => $request->image ?? null,
         ]);
 
@@ -68,7 +71,7 @@ class MenuRepository implements MenuRepositoryInterface
             throw new Exception(__('main.menu.not_found'));
         }
         $menu->name = $request->name;
-        $menu->slug = $request->slug;
+        $menu->slug = $this->translit($request->name);
         $menu->image = $request->image ?? null;
         if(!$menu->save()){
             throw new Exception(__('main.system.system_error'));
