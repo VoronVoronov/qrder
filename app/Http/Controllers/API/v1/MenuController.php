@@ -22,7 +22,7 @@ class MenuController extends Controller
     public function index(MenuRepository $menuRepository): JsonResponse
     {
         try{
-            return $this->success($menuRepository->index(), 'Меню', Response::HTTP_OK);
+            return $this->success($menuRepository->index(), __('main.menu.title'), Response::HTTP_OK);
         } catch (Exception) {
             return $this->error(__('main.system.system_error'), Response::HTTP_INTERNAL_SERVER_ERROR);
         }
