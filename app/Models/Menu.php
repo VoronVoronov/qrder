@@ -12,8 +12,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Menu extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'rate_id',
         'user_id',

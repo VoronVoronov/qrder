@@ -8,8 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Rate extends Model
 {
-    use HasFactory;
-
     protected $fillable = [
         'name',
         'description',
