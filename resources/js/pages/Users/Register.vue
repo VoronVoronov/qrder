@@ -105,7 +105,8 @@ export default {
                     ElNotification({
                         message: response.data.message,
                         type: 'success',
-                        showClose: false
+                        showClose: false,
+                        duration: 2000
                     })
                     setTimeout(() => {
                         this.setAuthenticated(true);

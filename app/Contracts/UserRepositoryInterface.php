@@ -11,4 +11,6 @@ interface UserRepositoryInterface
     public function login(Request $request);
 
     public function profile();
+
+    public function logout();
 }

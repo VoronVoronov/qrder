@@ -38,7 +38,7 @@ export default {
     methods: {
         ...mapMutations(['setShowLayout', 'setLocale']),
         getLocale(){
-            let lang = this.locale
+            let lang = localStorage.getItem('locale')
             if(!lang){
                 this.dialog.selectLocale = true
                 this.setShowLayout(false)
@@ -53,6 +53,7 @@ export default {
             this.$i18n.locale = lang
             this.dialog.selectLocale = false
             this.setShowLayout(true)
+            localStorage.setItem('locale', lang)
         },
     },
 };
